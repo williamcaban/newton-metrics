@@ -1,15 +1,19 @@
 # Metrics 
 
+Some of the metrics collected and aggregated on the Kafka bus of the Smart Operations stack.
 ## Frequency
 
 - Current frequency
+
     - `node_cpu_scaling_frequency_hertz` : Current scaled CPU thread frequency in hertz
 
 - Min/Max frequency
+
     - `node_cpu_scaling_frequency_min_hertz` : Minimum scaled CPU thread frequency in hertz
     - `node_cpu_scaling_frequency_max_hertz` : Maximum scaled CPU thread frequency in hertz
 
 - Min/Max frequency
+
     - `node_cpu_frequency_min_hertz` : Minimum cpu thread frequency in hertz
     - `node_cpu_frequency_max_hertz` : Maximum cpu thread frequency in hertz
 
@@ -43,8 +47,11 @@
 ## Memory
 
 - Total memory in the node
+
     - `node_memory_MemTotal_bytes`     : Memory information field MemTotal_bytes
+
 - Available memory in the node
+
     - `node_memory_MemAvailable_bytes` : Memory information field MemAvailable_bytes
     - `node_memory_MemFree_bytes`      : Memory information field MemFree_bytes (cache memory considerd used)
 
@@ -55,17 +62,41 @@
 ## Time
 
 - uptime
+
     - `node_boot_time_seconds` : Node boot time, in unixtime
+
 - node time
+
     - `node_time_seconds` : System time in seconds since epoch (1970)
 
 ## Pod level metrics
+
 - Pod level limits
+
     - `kube_pod_container_resource_limits`
+
 - Node status and capacity as seen by K8s
+
     - `kube_node_status_capacity`
+
 - Pod info
+
     - `kube_pod_info`
+    - `kube_pod_labels`
+
+- From Kepler
+
+    - `node_energy_stat`
+    - `pod_energy_stat`
+    - `node_hwmon_energy_joule_total`
+    - `node_cpu_scaling_frequency_hertz`
+    - `node_package_energy_millijoule`
+    - `pod_cpu_cpu_time_us`
+    - `pod_total_energy_in_other_millijoule`
+
+- From telegraf snmp collector
+
+    - `idrac_*`
 
 ## Some Formulas
 
@@ -110,8 +141,8 @@ sum by (node) (
 topk(2, (node_memory_MemFree_bytes / node_memory_MemTotal_bytes) * 100)
 ```
 
-
 ## References
+
 - [Querying examples](https://prometheus.io/docs/prometheus/latest/querying/examples/)
 - [Promql cheatsheet](https://sysdig.com/blog/getting-started-with-promql-cheatsheet/)
 - Prometheus query examples for [monitoring Kubernetes](https://sysdig.com/blog/prometheus-query-examples/)
